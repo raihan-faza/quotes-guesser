@@ -59,8 +59,5 @@ pip install -r requirements.txt
 - Implement a more advanced ML model (e.g., Transformer-based)
 - Deploy API using **Docker**
 
-## 📜 License
-This project is open-source under the **MIT License**.
-
 ---
 
