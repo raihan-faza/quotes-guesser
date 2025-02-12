@@ -3,6 +3,10 @@ from itertools import chain
 
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
 df = pd.read_csv("quotes.csv")
@@ -30,5 +34,9 @@ X = vectorizer.fit_transform(df["quote"])
 mlb = MultiLabelBinarizer()
 y = mlb.fit_transform(labels)
 
-print(X)
-print(y)
+# split datanya kali ya?
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = OneVsRestClassifier(LogisticRegression(max_iter=500))
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print("Classification Report:\n", classification_report(y_test, y_pred))
