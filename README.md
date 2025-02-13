@@ -60,4 +60,4 @@ pip install -r requirements.txt
 - Deploy API using **Docker**
 
 ---
-
+{project postponed}
